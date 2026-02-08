@@ -41,9 +41,9 @@ export const SERVICES: Service[] = [
 ];
 
 export const STATS: Stat[] = [
-  { value: '+500', label: 'Licitações Vencidas' },
-  { value: 'R$ 45M', label: 'Em Contratos' },
-  { value: '98%', label: 'Taxa de Aprovação' }
+  { value: '+75', label: 'Licitações Vencidas' },
+  { value: '+R$ 230M', label: 'Em Licitações Vencidas' },
+  { value: '+98%', label: 'Taxa de Aprovação' }
 ];
 
 export const SEGMENTS: Segment[] = [
