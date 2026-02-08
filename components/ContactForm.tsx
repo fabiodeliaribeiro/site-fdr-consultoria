@@ -21,7 +21,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ initialMessage = '' }) => {
     }
   }, [initialMessage]);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!formData.name || !formData.email) {
       alert("Por favor, preencha pelo menos o nome e email.");
@@ -30,15 +30,35 @@ const ContactForm: React.FC<ContactFormProps> = ({ initialMessage = '' }) => {
 
     setIsSubmitting(true);
 
-    // Simulando envio de API
-    setTimeout(() => {
-      setIsSubmitting(false);
+    try {
+      const response = await fetch('https://n8n.fdrconsultoria.cloud/webhook/1063048c-6081-4b6c-adfb-299a65b23a0e', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          segment: formData.segment,
+          message: formData.message
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
       setIsSuccess(true);
       setFormData({ name: '', email: '', segment: '', message: '' });
 
       // Resetar mensagem de sucesso após 5 segundos
       setTimeout(() => setIsSuccess(false), 5000);
-    }, 1500);
+    } catch (error) {
+      console.error('Erro ao enviar mensagem:', error);
+      alert('Erro ao enviar mensagem. Por favor, tente novamente.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
