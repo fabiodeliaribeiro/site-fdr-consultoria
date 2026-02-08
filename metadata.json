@@ -1,0 +1,8 @@
+{
+  "name": "FDR Consultoria - Especialistas em Licitações",
+  "description": "Uma plataforma completa para consultoria em licitações públicas, ajudando empresas a transformar oportunidades governamentais em lucros privados com inteligência e segurança jurídica.",
+  "requestFramePermissions": [
+    "camera",
+    "microphone"
+  ]
+}
