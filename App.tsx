@@ -10,6 +10,8 @@ import Footer from './components/Footer';
 import WhatsAppButton from './components/WhatsAppButton';
 
 const App: React.FC = () => {
+  const [initialMessage, setInitialMessage] = React.useState('');
+
   // Check system dark mode preference
   useEffect(() => {
     if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
@@ -17,12 +19,23 @@ const App: React.FC = () => {
     }
   }, []);
 
+  const handleServiceSelect = (serviceTitle: string) => {
+    const message = `Olá, tenho interesse no serviço de ${serviceTitle}. Gostaria de mais informações.`;
+    setInitialMessage(message);
+
+    // Scroll to contact form
+    const contactSection = document.getElementById('contato');
+    if (contactSection) {
+      contactSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <div className="min-h-screen">
       <Navbar />
       <main>
         <Hero />
-        <ServicesGrid />
+        <ServicesGrid onSelectService={handleServiceSelect} />
         <AIDiagnostic />
         <Segments />
 
@@ -33,12 +46,12 @@ const App: React.FC = () => {
               <div className="relative">
                 <div className="absolute -top-10 -left-10 w-40 h-40 bg-primary/10 rounded-full blur-3xl"></div>
                 <img
-                  src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1200&q=80"
+                  src="/cristo-redentor.jpg"
                   alt="Escritório FDR"
                   className="rounded-[40px] shadow-2xl relative z-10 grayscale hover:grayscale-0 transition-all duration-700"
                 />
                 <div className="absolute -bottom-6 -right-6 bg-primary p-8 rounded-3xl shadow-xl z-20 text-white">
-                  <p className="text-4xl font-extrabold">+15</p>
+                  <p className="text-4xl font-extrabold">+12</p>
                   <p className="text-xs uppercase font-bold tracking-widest opacity-80">Anos de Experiência</p>
                 </div>
               </div>
@@ -70,13 +83,22 @@ const App: React.FC = () => {
                       <p className="text-gray-500 dark:text-gray-400">Nossa equipe de especialistas garante 100% de conformidade documental.</p>
                     </div>
                   </div>
+                  <div className="flex gap-4">
+                    <div className="flex-shrink-0 w-12 h-12 rounded-xl bg-orange-100 dark:bg-orange-900/30 flex items-center justify-center text-primary">
+                      <span className="material-icons-outlined">visibility</span>
+                    </div>
+                    <div>
+                      <h4 className="text-xl font-bold mb-1">Lisura e Transparência</h4>
+                      <p className="text-gray-500 dark:text-gray-400">Processos claros e auditáveis, garantindo a integridade em cada etapa.</p>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </section>
 
-        <ContactForm />
+        <ContactForm initialMessage={initialMessage} />
       </main>
       <Footer />
       <WhatsAppButton />

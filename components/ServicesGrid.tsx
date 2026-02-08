@@ -2,15 +2,11 @@
 import React from 'react';
 import { SERVICES } from '../constants';
 
-const ServicesGrid: React.FC = () => {
-  const scrollToContact = (serviceTitle: string) => {
-    const contactSection = document.getElementById('contato');
-    if (contactSection) {
-      contactSection.scrollIntoView({ behavior: 'smooth' });
-      // Opcional: pré-preencher o assunto no futuro
-      console.log(`Interesse no serviço: ${serviceTitle}`);
-    }
-  };
+interface ServicesGridProps {
+  onSelectService: (serviceTitle: string) => void;
+}
+
+const ServicesGrid: React.FC<ServicesGridProps> = ({ onSelectService }) => {
 
   return (
     <section id="solucoes" className="py-24 bg-background-light dark:bg-background-dark">
@@ -27,8 +23,8 @@ const ServicesGrid: React.FC = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {SERVICES.map((service) => (
-            <div 
-              key={service.id} 
+            <div
+              key={service.id}
               className="group bg-white dark:bg-surface-dark rounded-3xl border border-gray-100 dark:border-gray-800 shadow-xl hover:shadow-2xl hover:border-primary/50 transition-all duration-500 overflow-hidden flex flex-col p-8"
             >
               <div className="w-16 h-16 bg-primary/10 rounded-2xl flex items-center justify-center mb-8 group-hover:bg-primary group-hover:text-white transition-all duration-500 transform group-hover:rotate-6">
@@ -42,7 +38,7 @@ const ServicesGrid: React.FC = () => {
               <p className="text-gray-600 dark:text-gray-400 mb-6 flex-grow">
                 {service.description}
               </p>
-              
+
               <div className="mb-8 p-4 bg-gray-50 dark:bg-background-dark rounded-xl">
                 <span className="text-[10px] uppercase font-bold text-primary block mb-2 tracking-widest">Público Alvo</span>
                 <p className="text-sm font-semibold">{service.forWhom}</p>
@@ -57,8 +53,8 @@ const ServicesGrid: React.FC = () => {
                 ))}
               </ul>
 
-              <button 
-                onClick={() => scrollToContact(service.title)}
+              <button
+                onClick={() => onSelectService(service.title)}
                 className="w-full py-4 border-2 border-primary text-primary font-bold rounded-xl group-hover:bg-primary group-hover:text-white transition-all duration-300 active:scale-95"
               >
                 {service.cta}
