@@ -79,12 +79,12 @@ const AIDiagnostic: React.FC = () => {
               </p>
               <div className="mt-8 flex justify-center">
                 <a
-                  href="https://wa.me/5511999999999"
+                  href="https://wa.me/5567999491952"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 text-primary font-bold hover:underline bg-primary/5 px-6 py-3 rounded-full"
                 >
-                  Falar com consultor humano agora
+                  Falar com o consultor IA
                   <span className="material-icons-outlined">arrow_forward</span>
                 </a>
               </div>
