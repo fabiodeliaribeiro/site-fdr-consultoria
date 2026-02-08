@@ -1,10 +1,6 @@
 
 export const getDiagnosticFromN8N = async (scenario: string) => {
-    const webhookUrl = import.meta.env.VITE_N8N_WEBHOOK_URL;
-
-    if (!webhookUrl) {
-        throw new Error("VITE_N8N_WEBHOOK_URL is not defined");
-    }
+    const webhookUrl = "https://n8n.fdrconsultoria.cloud/webhook-test/dacb4f97-3e72-4f7b-914d-6012404e47da";
 
     try {
         const response = await fetch(webhookUrl, {
@@ -12,7 +8,7 @@ export const getDiagnosticFromN8N = async (scenario: string) => {
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({ scenario }),
+            body: JSON.stringify({ message: scenario }),
         });
 
         if (!response.ok) {
@@ -22,12 +18,6 @@ export const getDiagnosticFromN8N = async (scenario: string) => {
         const data = await response.json();
 
         // Adjust based on actual n8n response structure. 
-        // Assuming n8n returns simple text or an object with a specific field.
-        // If it returns an array of items (common in n8n), we might need data[0].output or similar.
-        // For now, returning the whole response or a specific field if identified.
-        // Let's assume it returns { result: "analysis text" } or just the text if configured that way.
-        // Given the previous code expected a string, we should ensure we return a string.
-
         if (typeof data === 'string') return data;
         if (data.output) return data.output;
         if (data.result) return data.result;
