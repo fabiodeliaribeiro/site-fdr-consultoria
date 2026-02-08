@@ -8,22 +8,17 @@ const Footer: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-20">
           <div className="col-span-1 md:col-span-1">
             <div className="flex items-center gap-3 mb-6">
-              <div className="w-10 h-10 bg-primary rounded-full flex items-center justify-center text-white font-bold">F</div>
+              <img src="/logo.png" alt="FDR Consultoria" className="h-12 w-auto" />
               <span className="font-display font-bold text-xl tracking-tight text-gray-900 dark:text-white">
-                FDR CONSULTORIA
+                FDR <span className="text-primary font-extrabold">CONSULTORIA</span>
               </span>
             </div>
-            <p className="text-gray-500 dark:text-gray-400 text-sm leading-relaxed">
-              Líderes em inteligência para contratações públicas. Ajudamos empresas a navegar no complexo ecossistema de editais governamentais com segurança e resultados.
-            </p>
           </div>
-          
+
           <div>
             <h4 className="font-bold text-gray-900 dark:text-white mb-6 uppercase tracking-widest text-sm">Empresa</h4>
             <ul className="space-y-4 text-sm text-gray-500 dark:text-gray-400">
               <li><a href="#" className="hover:text-primary transition-colors">Sobre Nós</a></li>
-              <li><a href="#" className="hover:text-primary transition-colors">Blog</a></li>
-              <li><a href="#" className="hover:text-primary transition-colors">Trabalhe Conosco</a></li>
               <li><a href="#" className="hover:text-primary transition-colors">Contato</a></li>
             </ul>
           </div>
@@ -33,8 +28,8 @@ const Footer: React.FC = () => {
             <ul className="space-y-4 text-sm text-gray-500 dark:text-gray-400">
               <li><a href="#" className="hover:text-primary transition-colors">Assessoria Mensal</a></li>
               <li><a href="#" className="hover:text-primary transition-colors">Assessoria por Edital</a></li>
-              <li><a href="#" className="hover:text-primary transition-colors">Compliance</a></li>
-              <li><a href="#" className="hover:text-primary transition-colors">SICAF & Cadastro</a></li>
+              <li><a href="#" className="hover:text-primary transition-colors">Recursos e Impugnações</a></li>
+              <li><a href="#" className="hover:text-primary transition-colors">Compliance em Licitações</a></li>
             </ul>
           </div>
 
