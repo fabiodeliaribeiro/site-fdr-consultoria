@@ -45,7 +45,9 @@ const ContactForm: React.FC<ContactFormProps> = ({ initialMessage = '' }) => {
       });
 
       if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
+        const errorText = await response.text();
+        console.error('Resposta do servidor:', response.status, errorText);
+        throw new Error(`Erro ${response.status}: ${errorText || response.statusText}`);
       }
 
       setIsSuccess(true);
@@ -55,7 +57,8 @@ const ContactForm: React.FC<ContactFormProps> = ({ initialMessage = '' }) => {
       setTimeout(() => setIsSuccess(false), 5000);
     } catch (error) {
       console.error('Erro ao enviar mensagem:', error);
-      alert('Erro ao enviar mensagem. Por favor, tente novamente.');
+      const errorMessage = error instanceof Error ? error.message : 'Erro desconhecido';
+      alert(`Erro ao enviar mensagem: ${errorMessage}`);
     } finally {
       setIsSubmitting(false);
     }
